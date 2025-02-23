@@ -29,7 +29,7 @@
     </div>
     <div class="d-flex">
       <%= link_to follows_user_path(@user) do %>
-        <h6>【フォロー】<%= @following_users.count %></h6>
+        <h6>フォロー<%= @following_users.count %></h6>
       <% end %>
       <%= link_to followers_user_path(@user) do %>
         <h6>フォロワー<%= @follower_users.count %></h6>
