@@ -7,8 +7,8 @@ ja:
         user:
           attributes:
             email:
-              blank: "Eメールを入力してください。"
+              blank: "Eメールを入力してください"
             password:
-              blank: "パスワードを入力してください。"
+              blank: "パスワードを入力してください"
             name:
-              blank: "名前を入力してください"
+              blank: "名前を入力してください。"
