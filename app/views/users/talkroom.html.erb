@@ -3,5 +3,14 @@
     <div class="row mt-5">
       <h1 class="font-weight-normal"><%= link_to @user.name, :back %>さんとのトークルーム</h1>
     </div>
+    <div class="box">
+    
+    </div>
+    <div class="mt-5 justify-content-center">
+      <%= form_with(model:@comment, local: true) do |f| %>
+        <%= f.text_field :comment, :size=>"70x1", placeholder: "メッセージを入力してください" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
   </div>
 </div>

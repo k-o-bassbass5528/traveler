@@ -28,3 +28,20 @@
 .profile {
     padding: 15px;
 }
+
+.box {
+    width: 70%;
+    padding: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+  }
+
+.comments-box {
+    background-color: #fff4c3;
+}
+
+.current-user-comments-index {
+    background-color: #c4ffc3;
+}

@@ -13,7 +13,9 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower
   has_many :read_counts, dependent: :destroy
 
+  # belongs_to :user
   validates :name, presence: true
+  # validates :text, presence: true, length: { maximum: 140 }
 
   attachment :profile_image
 
