@@ -10,7 +10,7 @@
     <% unless @user.id == current_user.id %>
       <% if (current_user.following? @user) && (@user.following? current_user) %>
         <div class="d-grid mx-auto align-self-end">
-          <%= link_to "チャットを始める", talkroom_user_path(@user), class: "btn btn-primary" %>
+          <%= link_to "チャットを始める", room_path(@room_id), class: "btn btn-primary" %>
         </div>
       <% else %>
       <% end %>
