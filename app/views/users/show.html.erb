@@ -9,10 +9,18 @@
     </div>
     <% unless @user.id == current_user.id %>
       <% if (current_user.following? @user) && (@user.following? current_user) %>
-        <div class="d-grid mx-auto align-self-end">
-          <%= link_to "チャットを始める", room_path(@room_id), class: "btn btn-primary" %>
-        </div>
+      <% if @isRoom == true %>
+            <%= link_to room_path(@user) do %>
+              <h2 class="btn btn-primary ">チャットへ</h2>
+            <% end %>
       <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, value: @user.id %>
+          <% end %>
+          <%= f.submit "チャットを始める", class:"btn btn-primary user-show-chat" %>
+        <% end %>
+      <% end %>
       <% end %>
     <% end %>
     <% if user_signed_in? && @user == current_user %>
