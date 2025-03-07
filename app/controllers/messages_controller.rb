@@ -1,17 +1,24 @@
 class MessagesController < ApplicationController
-    before_action :authenticate_user!, :only=>[:create]
+    before_action :authenticate_user!
 
-    def create
-        if Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id]).present?
-        @message = Message.create(params.require(:message).permit(:message,:user_id, :content, :room_id).merge(:user_id => current_user.id))
-            redirect_to "/rooms/#{@message.room_id}"
+        def create
+            @room = Room.find(params[:message][:room_id])
+            @message = Message.new(message_params)
+            @message.user = current_user
+            @message.room_id = params[:message][:room_id]
+            @message.room = @room
+    
+        if @message.save
+            redirect_to rooms_path(@room)
         else
-            redirect_back(fallback_location: root_path)
+            flash[:error] = @message.errors.full_messages.join(", ")
+            redirect_to rooms_path(@room)
         end
     end
 
     private
+
     def message_params
-        params.require(:message).permit(:message, :room_id)
+    params.require(:message).permit(:message, :room_id)
     end
 end
