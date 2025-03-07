@@ -4,7 +4,3 @@ class Message < ApplicationRecord
 
   validates :message, presence: true, length: { maximum: 140 }
 end
-
-def message
-  body
-end

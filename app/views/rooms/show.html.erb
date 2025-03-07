@@ -1,19 +1,22 @@
-<% if @user %>
-  <h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= link_to @user.name,back %> さんとのトークルーム</h1>
-<% end %>
-
-<div class="message" style="width: 400px;">
-  <% @messages.each do |message| %>
-    <% if message.user_id == current_user.id %>
-      <p style"text-align: right;"><%= message.message %></p>
-    <% else %>
-      <p style="text-align: left;"><%= message.message %></p>
-    <% end %>
+<% @entries.each do |e| %>
+  @entries = @entries.where.not(user_id: current_user.id).first
+  <% if @entries != e.user.id %>
+      <h2><%= e.user.name %>さんとのトークルーム</h2>
+    </div>
   <% end %>
-</div>
-
-<%= form_with model: @message, data: {local:false} do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.submit "投稿する",class: 'form-submit' %>
 <% end %>
+<%= link_to "ユーザー一覧に戻る", users_path %>
+
+   <% if @messages.present? %>
+     <% @messages.each do |m| %>
+       <% @entries == m.user.id  %>
+       <p><%= m.user.name %></p>
+         <p><%= m.message %></p>
+     <% end %>
+   <% end %>
+   
+<%= form_for @message do |f| %>
+   <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "投稿",class: 'form-submit'%>
+ <% end %>
