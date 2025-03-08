@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     unless @user.id == current_user.id
       @current_entry.each do |cu|
         @another_entry.each do |a|
-          if cu.room_id == a.room_id
+          if cu.room_id == a.room_id then
             @is_room = true
             @room_id = cu.room_id
           end
