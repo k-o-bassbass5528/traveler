@@ -11,12 +11,11 @@ Rails.application.routes.draw do
 
   resources :users, only:[:index, :show, :edit, :update] do
     member do
-      get :follows, :followers, :talkroom
+      get :follows, :followers
     end
     resource :relationships, only: [:create, :destroy]
   end
 
-  resources :users, only: [:show,:edit,:update]
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :show]
 

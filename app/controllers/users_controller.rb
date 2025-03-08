@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -18,7 +18,8 @@ class UsersController < ApplicationController
           end
         end
       end
-      unless @is_room
+      if @is_room
+      else
         @room = Room.new
         @entry = Entry.new
       end
