@@ -10,13 +10,9 @@ class RoomsController < ApplicationController
 
     def show
         @room = Room.find(params[:id])
-        if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-            @messeges = @room.messages
-            @message = Message.new
-            @entries = @room.entries
-            @myuserid = current_user.id
-        else
-            redirect_back(fallback_location: root_path)
-        end
+        @message = Message.new
+        @messeges = @room.messages
+        @entries = @room.entries
+        @myuserid = current_user.id
     end
 end
